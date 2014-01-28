@@ -10,11 +10,13 @@
 
 @interface DateClay : NSObject
 
++ (NSDate *)filteredDate:(NSDate *)date flag:(NSCalendarUnit)flag;
+
 + (NSDate *)dateIgnoreTimeWithDate:(NSDate *)date;
 
 + (NSDate *)dateIgnoreDayWithDate:(NSDate *)date;
 
-+ (NSDate *)margeDateWithDay:(NSDate *)day time:(NSDate *)time;
++ (NSDate *)mergeDateWithDay:(NSDate *)day time:(NSDate *)time;
 
-+ (NSDate *)margeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag otherDate:(NSDate *)otherDate unitFlag:(enum NSCalendarUnit)otherFlag;
++ (NSDate *)mergeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag anotherDate:(NSDate *)anotherDate unitFlag:(enum NSCalendarUnit)anotherFlag;
 @end

@@ -9,61 +9,56 @@
 #import "DateClay.h"
 
 #define DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
+#define DATE_DAY_COMPONENTS (NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+#define DATE_TIME_COMPONENTS (NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)
+#define DATE_
 
 @implementation DateClay
 
-+ (NSDate *)dateIgnoreTimeWithDate:(NSDate *)date {
++ (NSDate *)filteredDate:(NSDate *)date flag:(NSCalendarUnit)flag {
     NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
     calendar.locale = [NSLocale currentLocale];
-    NSDateComponents *dateComps = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:date];
-    
-    return [calendar dateFromComponents:dateComps];
-}
-+ (NSDate *)dateIgnoreDayWithDate:(NSDate *)date {
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    calendar.locale = [NSLocale currentLocale];
-    NSDateComponents *dateComps = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
-    
+    NSDateComponents *dateComps = [calendar components:flag fromDate:date];
+
     return [calendar dateFromComponents:dateComps];
 }
 
-+ (NSDate *)margeDateWithDay:(NSDate *)day time:(NSDate *)time {
-    if (day && time) {
++ (NSDate *)dateIgnoreTimeWithDate:(NSDate *)date {
+    return [self filteredDate:date flag:DATE_DAY_COMPONENTS];
+}
+
++ (NSDate *)dateIgnoreDayWithDate:(NSDate *)date {
+    return [self filteredDate:date flag:DATE_TIME_COMPONENTS];
+}
+
++ (NSDate *)mergeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag anotherDate:(NSDate *)anotherDate unitFlag:(enum NSCalendarUnit)anotherFlag {
+    if (baseDate && anotherDate) {
         NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
         [calendar setTimeZone:[NSTimeZone localTimeZone]];
-        NSDateComponents *dateCompsDay = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit fromDate:day];
-        NSDateComponents *dateCompsTime = [calendar components:NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:time];
+        NSDateComponents *dateCompsBase = [calendar components:baseFlag fromDate:baseDate];
+        NSDateComponents *dateCompsOther = [calendar components:anotherFlag fromDate:anotherDate];
 
-        [dateCompsDay setHour:dateCompsTime.hour];
-        [dateCompsDay setMinute:dateCompsTime.minute];
-        [dateCompsDay setSecond:dateCompsTime.second];
-
-        return [calendar dateFromComponents:dateCompsDay];
-    } else if (day) {
-        return [self dateIgnoreTimeWithDate:day];
-    } else if (time) {
-        return [self dateIgnoreDayWithDate:time];
+        for (NSString *key in [self keyForUnit:anotherFlag]) {
+            [dateCompsBase setValue:[dateCompsOther valueForKey:key] forKey:key];
+        }
+        return [calendar dateFromComponents:dateCompsBase];
+    } else if (baseDate) {
+        return [self filteredDate:baseDate flag:baseFlag];
+    } else if (anotherDate) {
+        return [self filteredDate:anotherDate flag:anotherFlag];
     } else {
         return nil;
     }
 }
 
-+ (NSDate *)margeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag otherDate:(NSDate *)otherDate unitFlag:(enum NSCalendarUnit)otherFlag{
-    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-    [calendar setTimeZone:[NSTimeZone localTimeZone]];
-    NSDateComponents *dateCompsBase = [calendar components:baseFlag fromDate:baseDate];
-    NSDateComponents *dateCompsOther = [calendar components:otherFlag fromDate:otherDate];
-
-    for (NSString *key in [self keyForUnit:otherFlag]) {
-        [dateCompsBase setValue:[dateCompsOther valueForKey:key] forKey:key];
-    }
-    return [calendar dateFromComponents:dateCompsBase];
++ (NSDate *)mergeDateWithDay:(NSDate *)day time:(NSDate *)time {
+    return [self mergeDateWithBaseDate:day unitFlag:DATE_DAY_COMPONENTS anotherDate:time unitFlag:DATE_TIME_COMPONENTS];
 }
 
-+ (id <NSFastEnumeration>)keyForUnit:(enum NSCalendarUnit)unit {
++ (NSArray *)keyForUnit:(enum NSCalendarUnit)unit {
     NSArray *params = @[@"era", @"year", @"month", @"day", @"hour", @"minute", @"second", @"week", @"weekday", @"weekdayOrdinal", @"quarter", @"weekOfMonth", @"weekOfYear", @"yearForWeekOfYear"];
     return [params objectsAtIndexes:[params indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
-        return ((NSInteger) pow(2, idx)) & unit;
+        return ((NSInteger) pow(2, idx) << 1) & unit;
     }]];
 }
 @end
