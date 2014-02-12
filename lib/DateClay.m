@@ -61,4 +61,17 @@
         return ((NSInteger) pow(2, idx) << 1) & unit;
     }]];
 }
+
++ (NSDate *)day:(NSDate *)date nextWeekday:(NSInteger)weekday {
+    NSCalendar *calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+    calendar.locale = [NSLocale currentLocale];
+    NSDateComponents *dateComps = [calendar components:NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | kCFCalendarUnitWeekdayOrdinal fromDate:date];
+    dateComps.weekday = weekday;
+    NSDate *day = [calendar dateFromComponents:dateComps];
+    if ([day compare:date] == NSOrderedDescending) {
+        return day;
+    } else {
+        return [day dateByAddingTimeInterval:604800];
+    }
+}
 @end

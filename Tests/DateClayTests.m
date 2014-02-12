@@ -125,5 +125,23 @@ context(@"", ^{
             [[[DateClay mergeDateWithDay:baseDate time:anotherDate] should] equal:result];
         });
     });
+    context(@"next weekday", ^{
+        it(@"next sunday is 7 days ago", ^{
+            NSDate *result = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @17,
+            }];
+            [[[DateClay day:baseDate nextWeekday:1] should] equal:result];
+        });
+        it(@"next monday is 1 days ago", ^{
+            NSDate *result = [NSDate AZ_dateByUnit:@{
+                    AZ_DateUnit.year : @2010,
+                    AZ_DateUnit.month : @10,
+                    AZ_DateUnit.day : @11,
+            }];
+            [[[DateClay day:baseDate nextWeekday:2] should] equal:result];
+        });
+    });
 });
 SPEC_END

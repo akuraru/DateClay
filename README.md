@@ -9,7 +9,7 @@ NSDateを切ったりつないだりするためのライブラリ。（何だ�
 ### CocoaPods
 
 ``` ruby
-pod 'DateClay', :git => https://github.com/akuraru/DateClay.git
+pod 'DateClay', :git => 'https://github.com/akuraru/DateClay.git'
 ```
 
 ## Usage
@@ -23,6 +23,8 @@ pod 'DateClay', :git => https://github.com/akuraru/DateClay.git
 // merge information for the date
 + (NSDate *)mergeDateWithDay:(NSDate *)day time:(NSDate *)time;
 + (NSDate *)mergeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag anotherDate:(NSDate *)anotherDate unitFlag:(enum NSCalendarUnit)anotherFlag;
+
++ (NSDate *)day:(NSDate *)date nextWeekday:(NSInteger)weekday;
 ```
 
 実際の使い方はテストコードを見ろ！

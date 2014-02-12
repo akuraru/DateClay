@@ -19,4 +19,6 @@
 + (NSDate *)mergeDateWithDay:(NSDate *)day time:(NSDate *)time;
 
 + (NSDate *)mergeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag anotherDate:(NSDate *)anotherDate unitFlag:(enum NSCalendarUnit)anotherFlag;
+
++ (NSDate *)day:(NSDate *)date nextWeekday:(NSInteger)weekday;
 @end
