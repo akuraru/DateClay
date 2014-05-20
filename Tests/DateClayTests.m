@@ -8,10 +8,9 @@
 @end
 
 SPEC_BEGIN(DateClayTest)
-context(@"", ^{
-    __block NSDate *baseDate;
-    beforeAll(^{
-        baseDate = [NSDate AZ_dateByUnit:@{
+describe(@"DataCaly", ^{
+    let(baseDate, ^{
+        return [NSDate AZ_dateByUnit:@{
                 AZ_DateUnit.year : @2010,
                 AZ_DateUnit.month : @10,
                 AZ_DateUnit.day : @10,
@@ -141,6 +140,38 @@ context(@"", ^{
                     AZ_DateUnit.day : @11,
             }];
             [[[DateClay day:baseDate nextWeekday:2] should] equal:result];
+        });
+    });
+    context(@"", ^{
+        let(currentTimeZone, ^{ return [NSTimeZone timeZoneForSecondsFromGMT: 9 * 60 * 60]; });
+        let(dateBlock, ^{
+            return (id)(^(NSTimeZone *timeZone) {
+                NSCalendar *calender = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+                NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+                dateComponents.calendar = calender;
+                dateComponents.timeZone = timeZone;
+                dateComponents.year = 2010;
+                dateComponents.month = 10;
+                dateComponents.day = 10;
+                
+                dateComponents.hour = 0;
+                return [dateComponents date];
+            });
+        });
+        let(localDate, ^{ return ((id(^)(NSTimeZone *))dateBlock)(currentTimeZone); });
+        let(gregorianDate, ^{ return ((id(^)(NSTimeZone *))dateBlock)([NSTimeZone timeZoneForSecondsFromGMT:0]); });
+        beforeEach(^{
+            [NSTimeZone stub:@selector(localTimeZone) andReturn:currentTimeZone];
+        });
+        it(@"-gregorianDateForLocalDate:", ^{
+            [[[DateClay gregorianDateForLocalDate:localDate] should] equal:gregorianDate];
+        });
+        it(@"-localDateForGregorianDate", ^{
+            [[[DateClay localDateForGregorianDate:gregorianDate] should] equal:localDate];
+        });
+        it(@"reverce", ^{
+            [[[DateClay localDateForGregorianDate:[DateClay gregorianDateForLocalDate:localDate]] should] equal:localDate];
+            
         });
     });
 });

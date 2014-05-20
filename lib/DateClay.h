@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 @interface DateClay : NSObject
-
 + (NSDate *)filteredDate:(NSDate *)date flag:(NSCalendarUnit)flag;
 
 + (NSDate *)dateIgnoreTimeWithDate:(NSDate *)date;
@@ -21,4 +20,8 @@
 + (NSDate *)mergeDateWithBaseDate:(NSDate *)baseDate unitFlag:(enum NSCalendarUnit)baseFlag anotherDate:(NSDate *)anotherDate unitFlag:(enum NSCalendarUnit)anotherFlag;
 
 + (NSDate *)day:(NSDate *)date nextWeekday:(NSInteger)weekday;
+
++ (NSDate *)gregorianDateForLocalDate:(NSDate *)localDate;
+
++ (NSDate *)localDateForGregorianDate:(NSDate *)gregorianDate;
 @end

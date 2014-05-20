@@ -74,4 +74,15 @@
         return [day dateByAddingTimeInterval:604800];
     }
 }
+
++ (NSDate *)gregorianDateForLocalDate:(NSDate *)localDate {
+    NSTimeInterval gmt_Interval = [[NSTimeZone localTimeZone] secondsFromGMT];
+    return [localDate dateByAddingTimeInterval:gmt_Interval];
+}
+
++ (NSDate *)localDateForGregorianDate:(NSDate *)gregorianDate {
+    NSTimeInterval gmt_Interval = [[NSTimeZone localTimeZone] secondsFromGMT];
+    return [gregorianDate dateByAddingTimeInterval:-(gmt_Interval)];
+
+}
 @end
