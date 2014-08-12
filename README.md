@@ -1,18 +1,22 @@
-DateClay
-========
+# DateClay
 
-NSDateを切ったりつないだりするためのライブラリ。（何だこの説明文イミフ）
+[![CI Status](http://img.shields.io/travis/akuraru/DateClay.svg?style=flat)](https://travis-ci.org/akuraru/DateClay)
+[![Version](https://img.shields.io/cocoapods/v/DateClay.svg?style=flat)](http://cocoadocs.org/docsets/DateClay)
+[![License](https://img.shields.io/cocoapods/l/DateClay.svg?style=flat)](http://cocoadocs.org/docsets/DateClay)
+[![Platform](https://img.shields.io/cocoapods/p/DateClay.svg?style=flat)](http://cocoadocs.org/docsets/DateClay)
 
+## Requirements
 
 ## Installation
 
-### CocoaPods
+DateClay is available through [CocoaPods](http://cocoapods.org). To install
+it, simply add the following line to your Podfile:
 
-``` ruby
-pod 'DateClay', :git => 'https://github.com/akuraru/DateClay.git'
-```
+    pod "DateClay"
+
 
 ## Usage
+
 
 ``` objc
 // filtering information for the date
@@ -27,16 +31,13 @@ pod 'DateClay', :git => 'https://github.com/akuraru/DateClay.git'
 + (NSDate *)day:(NSDate *)date nextWeekday:(NSInteger)weekday;
 ```
 
-実際の使い方はテストコードを見ろ！
+Please look at the test code for how to use
 
-## Contributing
- 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+## Author
+
+akuraru, akuraru@gmail.com
 
 ## License
 
-MIT
+DateClay is available under the MIT license. See the LICENSE file for more info.
+
