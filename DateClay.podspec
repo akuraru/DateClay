@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DateClay"
-  s.version          = "0.1.0"
+  s.version          = "1.1.0"
   s.summary          = "This library will be used in order to connect or cut NSDate."
   s.description      = <<-DESC
                         This library will be used in order to connect or cut NSDate
