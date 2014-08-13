@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DateClay"
-  s.version          = "1.1.0"
+  s.version          = "1.1.1"
   s.summary          = "This library will be used in order to connect or cut NSDate."
   s.description      = <<-DESC
                         This library will be used in order to connect or cut NSDate
@@ -32,7 +32,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => "https://github.com/akuraru/DateClay.git", :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/akuraru'
 
-  s.platform     = :ios, '7.0'
+  s.platform     = :ios, '6.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
