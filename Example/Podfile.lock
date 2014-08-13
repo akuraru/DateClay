@@ -1,6 +1,6 @@
 PODS:
   - AZDateBuilder (0.1)
-  - DateClay (0.1.0)
+  - DateClay (1.1.0)
   - Kiwi (2.3.0)
 
 DEPENDENCIES:
@@ -14,7 +14,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   AZDateBuilder: 423801fcc0c784eaf9c15b410d43895f6a24bdde
-  DateClay: 72dbcc9f1e0bb9ba278c7cc7379334bd57531bba
+  DateClay: b17af7d926bde01bb1eaa7d5e04bdbbd09b2835b
   Kiwi: 54bece5b35564d9b8e03c608d926f1a22fcfc589
 
 COCOAPODS: 0.33.1
