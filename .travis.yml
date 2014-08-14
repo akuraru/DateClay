@@ -1,8 +1,11 @@
 # reference: http://www.objc.io/issue-6/travis-ci.html
 
 language: objective-c
+before_install:
+  - cd Example
+  - pod install
+  - pod update
+  - cd ../
+  - gem install xcpretty
 script:
-- cd Example
-- pod install
-- cd ../
-- xcodebuild test -sdk iphonesimulator -workspace Example/DateClay.xcworkspace -scheme DateClay -configuration Debug OBJROOT=build ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES
+  - xcodebuild test -sdk iphonesimulator -workspace Example/DateClay.xcworkspace -scheme DateClay -configuration Debug OBJROOT=build ONLY_ACTIVE_ARCH=NO GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
