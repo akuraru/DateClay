@@ -1,0 +1,20 @@
+PODS:
+  - AZDateBuilder (0.1)
+  - DateClay (1.1.1)
+  - Kiwi (2.3.1)
+
+DEPENDENCIES:
+  - AZDateBuilder
+  - DateClay (from `./`)
+  - Kiwi
+
+EXTERNAL SOURCES:
+  DateClay:
+    :path: ./
+
+SPEC CHECKSUMS:
+  AZDateBuilder: 00939059a13d87c0e1e9b03e0410116857acce57
+  DateClay: 20127b526181bf3a989bf13f33dcc40e21b1c362
+  Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
+
+COCOAPODS: 0.36.0

@@ -16,8 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		280327AA7AADB25E22FCA13A /* Pods-DateClay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateClay.release.xcconfig"; path = "Pods/Target Support Files/Pods-DateClay/Pods-DateClay.release.xcconfig"; sourceTree = "<group>"; };
 		2E376F7C61914B17901CF8FD /* libPods-DateClay.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-DateClay.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		4E2308E33F18416D97A5C817 /* Pods-DateClay.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateClay.xcconfig"; path = "Pods/Pods-DateClay.xcconfig"; sourceTree = "<group>"; };
 		535D3446A3614D3FA826A1D7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		5787B9CD11194849985233B5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* DateClay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DateClay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +31,7 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		BD0B2EF32D034FF6844ECCDA /* DateClay.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = DateClay.podspec; path = ../DateClay.podspec; sourceTree = "<group>"; };
 		BE855625199ADACB000FA852 /* DateClayTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateClayTests.m; sourceTree = "<group>"; };
+		E2EC27242EF9B5E995178E7F /* Pods-DateClay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DateClay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DateClay/Pods-DateClay.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,7 +56,7 @@
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				4E2308E33F18416D97A5C817 /* Pods-DateClay.xcconfig */,
+				D67541D08E346800456E316E /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -107,6 +108,15 @@
 				535D3446A3614D3FA826A1D7 /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		D67541D08E346800456E316E /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E2EC27242EF9B5E995178E7F /* Pods-DateClay.debug.xcconfig */,
+				280327AA7AADB25E22FCA13A /* Pods-DateClay.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +213,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-DateClay-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DateClay/Pods-DateClay-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -305,7 +315,7 @@
 		};
 		6003F5C3195388D20070C39A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2308E33F18416D97A5C817 /* Pods-DateClay.xcconfig */;
+			baseConfigurationReference = E2EC27242EF9B5E995178E7F /* Pods-DateClay.debug.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -327,7 +337,7 @@
 		};
 		6003F5C4195388D20070C39A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E2308E33F18416D97A5C817 /* Pods-DateClay.xcconfig */;
+			baseConfigurationReference = 280327AA7AADB25E22FCA13A /* Pods-DateClay.release.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
