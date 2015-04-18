@@ -8,10 +8,9 @@
 
 #import "DateClay.h"
 
-#define DATE_COMPONENTS (NSYearCalendarUnit| NSMonthCalendarUnit | NSDayCalendarUnit | NSWeekCalendarUnit |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit | NSWeekdayOrdinalCalendarUnit)
-#define DATE_DAY_COMPONENTS (NSEraCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-#define DATE_TIME_COMPONENTS (NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)
-#define DATE_
+#define DATE_COMPONENTS (NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitWeekday | NSCalendarUnitWeekdayOrdinal | NSCalendarUnitQuarter | kCFCalendarUnitQuarter | NSCalendarUnitWeekOfMonth | NSCalendarUnitWeekOfYear | NSCalendarUnitYearForWeekOfYear |  NSCalendarUnitNanosecond |  NSCalendarUnitCalendar | NSCalendarUnitTimeZone)
+#define DATE_DAY_COMPONENTS (NSCalendarUnitEra | NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay)
+#define DATE_TIME_COMPONENTS (NSCalendarUnitHour | NSCalendarUnitMinute | NSCalendarUnitSecond | NSCalendarUnitNanosecond)
 
 @implementation DateClay
 
@@ -56,7 +55,7 @@
 }
 
 + (NSArray *)keyForUnit:(enum NSCalendarUnit)unit {
-    NSArray *params = @[@"era", @"year", @"month", @"day", @"hour", @"minute", @"second", @"week", @"weekday", @"weekdayOrdinal", @"quarter", @"weekOfMonth", @"weekOfYear", @"yearForWeekOfYear"];
+    NSArray *params = @[@"era", @"year", @"month", @"day", @"hour", @"minute", @"second", @"week", @"weekday", @"weekdayOrdinal", @"quarter", @"weekOfMonth", @"weekOfYear", @"yearForWeekOfYear", @"nanosecond", @"", @"", @"", @"", @"calendar", @"timeZone"];
     return [params objectsAtIndexes:[params indexesOfObjectsPassingTest:^BOOL(id obj, NSUInteger idx, BOOL *stop) {
         return ((NSInteger) pow(2, idx) << 1) & unit;
     }]];
