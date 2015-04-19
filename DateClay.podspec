@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "DateClay"
-  s.version          = "1.1.1"
+  s.version          = "1.1.2"
   s.summary          = "This library will be used in order to connect or cut NSDate."
   s.description      = <<-DESC
                         This library will be used in order to connect or cut NSDate
@@ -26,19 +26,14 @@ Pod::Spec.new do |s|
                         + (NSDate *)day:(NSDate *)date nextWeekday:(NSInteger)weekday;
                        DESC
   s.homepage         = "https://github.com/akuraru/DateClay"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
   s.author           = { "akuraru" => "akuraru@gmail.com" }
   s.source           = { :git => "https://github.com/akuraru/DateClay.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/akuraru'
 
   s.platform     = :ios, '6.0'
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes'
-  # s.resources = 'Pod/Assets/*.png'
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.frameworks = 'Foundation'
 end
